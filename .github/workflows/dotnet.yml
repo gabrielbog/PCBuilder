@@ -29,13 +29,13 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --no-restore
 
     - name: Test
       run: dotnet test --no-build --verbosity normal
 
     - name: Publish
-      run: dotnet publish --configuration Release --output ./publish
+      run: dotnet publish -c Release --output ./Release
 
     - name: Finish Action
       run: echo "Action finished"
