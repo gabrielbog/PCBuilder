@@ -16,13 +16,26 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
+    - name: Start Action
+      run: echo "Action started"
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
+
     - name: Restore dependencies
       run: dotnet restore
+
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --configuration Release --no-restore
+
     - name: Test
       run: dotnet test --no-build --verbosity normal
+
+    - name: Publish
+      run: dotnet publish --configuration Release --output ./publish
+
+    - name: Finish Action
+      run: echo "Action finished"
